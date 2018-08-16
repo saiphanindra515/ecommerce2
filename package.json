@@ -1,0 +1,21 @@
+{
+  "name": "ecomerceapi",
+  "version": "1.0.0",
+  "description": "A basic ecommerce restapi application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apidoc": "^0.17.6",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.2.6",
+    "pino": "^5.0.0",
+    "shortid": "^2.2.12"
+  }
+}
