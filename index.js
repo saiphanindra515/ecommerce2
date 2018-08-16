@@ -1,3 +1,4 @@
+//import statements
 const express = require('express');
 const appConfig = require('./Config/appConfig')
 const fs = require('fs');
@@ -10,7 +11,7 @@ const GlobalError = require('./middlewares/ErrorHandler');
 const GlobalLogger= require('./middlewares/routeLogger');
 const logger = require('./library/Error');
 const http = require('http');
-
+//Application level middlewares
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(cookieparser());
@@ -18,6 +19,7 @@ app.use(GlobalError.globalErrorHandler);
 app.use(GlobalLogger.logIp);
 app.use(helmet());
 
+//importing schemas
 let model='./models';
 fs.readdirSync(model).forEach(function(file){
     if(~file.indexOf('.js')){
@@ -25,6 +27,7 @@ fs.readdirSync(model).forEach(function(file){
     }
 })
 
+// importing routes
 let Routes = './routes'
 fs.readdirSync(Routes).forEach(function(file){
     if(~file.indexOf('.js')){
@@ -33,8 +36,11 @@ fs.readdirSync(Routes).forEach(function(file){
     }
 }) 
 
+//global route not found application level middleware
 app.use(GlobalError.globalRouteNotFound);
 
+
+//creating http server
 const server = http.createServer(app)
 // start listening to http server
 console.log(appConfig)
@@ -79,7 +85,7 @@ process.on('unhandledRejection', (reason, p) => {
     // application specific logging, throwing an error, or other logic here
 })
 
-
+//mongoose database connection checking
 mongoose.connection.on('error',function(err){
     if(err){
         console.log('data base error occured');
